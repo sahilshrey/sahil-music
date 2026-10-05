@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
 <title>Sahil Music</title>
 
 <style>
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -18,12 +20,12 @@
 
 body {
   background: #08080d;
-  color: #fff;
+  color: white;
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 
 header {
   height: 72px;
@@ -32,7 +34,7 @@ header {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #202027;
-  background: rgba(8,8,13,.9);
+  background: rgba(8,8,13,.92);
   backdrop-filter: blur(18px);
   position: sticky;
   top: 0;
@@ -67,9 +69,15 @@ header {
   padding: 10px 15px;
   border-radius: 10px;
   font-size: 13px;
+  transition: .2s;
 }
 
-/* HERO */
+.apple-link:hover {
+  border-color: #8b5cf6;
+  color: white;
+}
+
+/* ================= HERO ================= */
 
 .hero {
   max-width: 1250px;
@@ -102,6 +110,7 @@ h1 {
 .gradient {
   background: linear-gradient(90deg,#a78bfa,#ec4899);
   -webkit-background-clip: text;
+  background-clip: text;
   color: transparent;
 }
 
@@ -112,7 +121,7 @@ h1 {
   line-height: 1.6;
 }
 
-/* SEARCH */
+/* ================= SEARCH ================= */
 
 .search {
   margin-top: 30px;
@@ -124,6 +133,11 @@ h1 {
   background: #121218;
   border: 1px solid #30303a;
   border-radius: 16px;
+}
+
+.search:focus-within {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139,92,246,.1);
 }
 
 .search-icon {
@@ -158,13 +172,18 @@ h1 {
   cursor: pointer;
 }
 
-/* VINYL */
+#searchButton:active {
+  transform: scale(.97);
+}
+
+/* ================= VINYL ================= */
 
 .vinyl {
   width: 270px;
   height: 270px;
   flex-shrink: 0;
   border-radius: 50%;
+
   background:
     repeating-radial-gradient(
       circle,
@@ -173,34 +192,52 @@ h1 {
       #1b1b20 5px,
       #1b1b20 8px
     );
+
   border: 18px solid #15151b;
+
   box-shadow:
     0 0 80px rgba(139,92,246,.3),
     0 25px 80px #000;
-  animation: spin 18s linear infinite;
+
+  animation: vinylSpin 18s linear infinite;
+
   position: relative;
 }
 
 .vinyl::after {
   content: "";
+
   position: absolute;
+
   width: 52px;
   height: 52px;
+
   left: 50%;
   top: 50%;
+
   transform: translate(-50%,-50%);
+
   border-radius: 50%;
-  background: linear-gradient(135deg,#a78bfa,#ec4899);
+
+  background:
+    linear-gradient(135deg,#a78bfa,#ec4899);
+
   border: 9px solid #101015;
 }
 
-@keyframes spin {
+@keyframes vinylSpin {
+
+  from {
+    transform: rotate(0deg);
+  }
+
   to {
     transform: rotate(360deg);
   }
+
 }
 
-/* CONTENT */
+/* ================= CONTENT ================= */
 
 .content {
   max-width: 1250px;
@@ -224,7 +261,7 @@ h1 {
   font-size: 13px;
 }
 
-/* CHIPS */
+/* ================= CHIPS ================= */
 
 .chips {
   display: flex;
@@ -246,14 +283,17 @@ h1 {
   color: #aaa;
   border-radius: 30px;
   cursor: pointer;
+  transition: .2s;
 }
 
-.chip:hover {
+.chip:hover,
+.chip.active {
   border-color: #8b5cf6;
   color: white;
+  background: #1c1528;
 }
 
-/* GRID */
+/* ================= SONG GRID ================= */
 
 .grid {
   display: grid;
@@ -291,15 +331,24 @@ h1 {
   position: absolute;
   right: 10px;
   bottom: 10px;
+
   width: 44px;
   height: 44px;
+
   border: 0;
   border-radius: 50%;
+
   background: white;
   color: black;
+
   font-size: 17px;
   cursor: pointer;
+
   box-shadow: 0 8px 25px #000;
+}
+
+.play:active {
+  transform: scale(.92);
 }
 
 .info {
@@ -309,6 +358,7 @@ h1 {
 .title {
   font-size: 14px;
   font-weight: bold;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -318,6 +368,7 @@ h1 {
   margin-top: 6px;
   color: #9999a3;
   font-size: 12px;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -327,9 +378,13 @@ h1 {
   margin-top: 7px;
   color: #62626d;
   font-size: 10px;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* STATUS */
+/* ================= STATUS ================= */
 
 .status {
   text-align: center;
@@ -340,35 +395,50 @@ h1 {
 .spinner {
   width: 30px;
   height: 30px;
+
   margin: auto;
+
   border: 3px solid #292930;
   border-top-color: #a78bfa;
+
   border-radius: 50%;
-  animation: spinLoader .8s linear infinite;
+
+  animation: loader .8s linear infinite;
 }
 
-@keyframes spinLoader {
+@keyframes loader {
+
   to {
     transform: rotate(360deg);
   }
+
 }
 
-/* PLAYER */
+/* ================= PLAYER ================= */
 
 .player {
   position: fixed;
+
   left: 18px;
   right: 18px;
   bottom: 18px;
+
   z-index: 100;
+
   display: none;
+
   align-items: center;
   gap: 14px;
+
   padding: 10px 14px;
+
   border: 1px solid #383342;
   border-radius: 17px;
+
   background: rgba(20,20,27,.95);
+
   backdrop-filter: blur(20px);
+
   box-shadow: 0 20px 70px #000;
 }
 
@@ -379,7 +449,9 @@ h1 {
 .player img {
   width: 50px;
   height: 50px;
+
   border-radius: 9px;
+
   object-fit: cover;
 }
 
@@ -391,6 +463,7 @@ h1 {
 .player-title {
   font-size: 13px;
   font-weight: bold;
+
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -415,20 +488,24 @@ h1 {
   cursor: pointer;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 
 footer {
   border-top: 1px solid #202027;
+
   max-width: 1250px;
   margin: auto;
+
   padding: 25px 6%;
+
   color: #555;
   font-size: 11px;
+
   display: flex;
   justify-content: space-between;
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 
 @media(max-width:900px) {
 
@@ -444,6 +521,7 @@ footer {
   .grid {
     grid-template-columns: repeat(3,1fr);
   }
+
 }
 
 @media(max-width:600px) {
@@ -500,16 +578,26 @@ footer {
   footer {
     padding: 25px 5%;
   }
+
 }
+
 </style>
 </head>
 
 <body>
 
+<!-- ================= HEADER ================= -->
+
 <header>
+
   <div class="logo">
-    <div class="logo-icon">♫</div>
+
+    <div class="logo-icon">
+      ♫
+    </div>
+
     Sahil<span>Music</span>
+
   </div>
 
   <a
@@ -520,17 +608,23 @@ footer {
   >
     Open Apple Music ↗
   </a>
+
 </header>
+
+
+<!-- ================= HERO ================= -->
 
 <section class="hero">
 
   <div class="hero-content">
 
-    <div class="eyebrow">MUSIC DISCOVERY</div>
+    <div class="eyebrow">
+      MUSIC DISCOVERY
+    </div>
 
     <h1>
       Find something<br>
-      <span>you'll love.</span>
+      <span class="gradient">you'll love.</span>
     </h1>
 
     <p class="subtitle">
@@ -539,7 +633,10 @@ footer {
     </p>
 
     <div class="search">
-      <div class="search-icon">⌕</div>
+
+      <div class="search-icon">
+        ⌕
+      </div>
 
       <input
         id="searchInput"
@@ -551,79 +648,185 @@ footer {
       <button id="searchButton">
         Search
       </button>
+
     </div>
 
   </div>
+
 
   <div class="vinyl"></div>
 
 </section>
 
+
+<!-- ================= MUSIC ================= -->
+
 <main class="content">
 
   <div class="section-title">
-    <h2>Explore music</h2>
+
+    <h2>
+      Explore music
+    </h2>
+
     <span id="count"></span>
+
   </div>
+
 
   <div class="chips">
-    <button class="chip" data-search="Bollywood">Bollywood</button>
-    <button class="chip" data-search="Punjabi">Punjabi</button>
-    <button class="chip" data-search="Hindi">Hindi</button>
-    <button class="chip" data-search="English">English</button>
-    <button class="chip" data-search="Arijit Singh">Arijit Singh</button>
-    <button class="chip" data-search="AP Dhillon">AP Dhillon</button>
-    <button class="chip" data-search="The Weeknd">The Weeknd</button>
+
+    <button class="chip" data-search="Bollywood">
+      Bollywood
+    </button>
+
+    <button class="chip" data-search="Punjabi">
+      Punjabi
+    </button>
+
+    <button class="chip" data-search="Hindi">
+      Hindi
+    </button>
+
+    <button class="chip" data-search="English">
+      English
+    </button>
+
+    <button class="chip" data-search="Arijit Singh">
+      Arijit Singh
+    </button>
+
+    <button class="chip" data-search="AP Dhillon">
+      AP Dhillon
+    </button>
+
+    <button class="chip" data-search="The Weeknd">
+      The Weeknd
+    </button>
+
   </div>
 
+
   <div id="status" class="status">
+
     <div class="spinner"></div>
-    <p style="margin-top:15px;">Finding music...</p>
+
+    <p style="margin-top:15px;">
+      Finding music...
+    </p>
+
   </div>
+
 
   <div id="grid" class="grid"></div>
 
 </main>
 
+
+<!-- ================= FOOTER ================= -->
+
 <footer>
-  <span>© 2026 Sahil Music</span>
-  <span>Music discovery • Powered by Apple catalog</span>
+
+  <span>
+    © 2026 Sahil Music
+  </span>
+
+  <span>
+    Music discovery • Powered by Apple catalog
+  </span>
+
 </footer>
+
+
+<!-- ================= PLAYER ================= -->
 
 <div id="player" class="player">
 
-  <img id="playerArt" src="" alt="">
+  <img
+    id="playerArt"
+    src=""
+    alt=""
+  >
 
   <div class="player-info">
-    <div id="playerTitle" class="player-title"></div>
-    <div id="playerArtist" class="player-artist"></div>
+
+    <div
+      id="playerTitle"
+      class="player-title"
+    ></div>
+
+    <div
+      id="playerArtist"
+      class="player-artist"
+    ></div>
+
   </div>
 
-  <audio id="audio" controls></audio>
 
-  <button id="closePlayer" class="close">×</button>
+  <audio
+    id="audio"
+    controls
+  ></audio>
+
+
+  <button
+    id="closePlayer"
+    class="close"
+  >
+    ×
+  </button>
 
 </div>
 
+
 <script>
 
+/* =====================================================
+   SAHIL MUSIC
+   ===================================================== */
+
+
 const API =
-  "https://itunes.apple.com/search?media=music&entity=song&limit=30&country=IN&term=";
+  "https://itunes.apple.com/search";
 
-const grid = document.getElementById("grid");
-const status = document.getElementById("status");
-const count = document.getElementById("count");
 
-const input = document.getElementById("searchInput");
-const searchButton = document.getElementById("searchButton");
+const grid =
+  document.getElementById("grid");
 
-const player = document.getElementById("player");
-const playerArt = document.getElementById("playerArt");
-const playerTitle = document.getElementById("playerTitle");
-const playerArtist = document.getElementById("playerArtist");
-const audio = document.getElementById("audio");
-const closePlayer = document.getElementById("closePlayer");
+const status =
+  document.getElementById("status");
 
+const count =
+  document.getElementById("count");
+
+const input =
+  document.getElementById("searchInput");
+
+const searchButton =
+  document.getElementById("searchButton");
+
+const player =
+  document.getElementById("player");
+
+const playerArt =
+  document.getElementById("playerArt");
+
+const playerTitle =
+  document.getElementById("playerTitle");
+
+const playerArtist =
+  document.getElementById("playerArtist");
+
+const audio =
+  document.getElementById("audio");
+
+const closePlayer =
+  document.getElementById("closePlayer");
+
+
+/* =====================================================
+   SECURITY
+   ===================================================== */
 
 function escapeHTML(text) {
 
@@ -637,148 +840,54 @@ function escapeHTML(text) {
 }
 
 
+/* =====================================================
+   LOADING
+   ===================================================== */
+
 function showLoading() {
 
   status.style.display = "block";
 
   status.innerHTML = `
+
     <div class="spinner"></div>
-    <p style="margin-top:15px;">Finding music...</p>
+
+    <p style="margin-top:15px;">
+      Finding music...
+    </p>
+
   `;
 
   grid.innerHTML = "";
 
+  count.textContent = "";
+
 }
 
+
+/* =====================================================
+   ERROR
+   ===================================================== */
 
 function showError() {
 
   status.style.display = "block";
 
   status.innerHTML = `
-    <p style="font-size:18px;">Something went wrong.</p>
-    <p style="margin-top:8px;color:#555;">
-      Please check your connection and try again.
+
+    <p style="font-size:18px;">
+      Couldn't load music.
     </p>
+
+    <p style="margin-top:8px;color:#555;">
+      Please check your internet connection and try again.
+    </p>
+
   `;
 
 }
 
 
-function renderSongs(songs) {
-
-  status.style.display = "none";
-
-  grid.innerHTML = "";
-
-  count.textContent = songs.length + " results";
-
-  if (!songs.length) {
-
-    status.style.display = "block";
-
-    status.innerHTML = `
-      <p>No music found.</p>
-    `;
-
-    return;
-  }
-
-
-  songs.forEach(song => {
-
-    const art =
-      (song.artworkUrl100 || "")
-      .replace("100x100", "600x600");
-
-
-    const card = document.createElement("div");
-
-    card.className = "card";
-
-
-    card.innerHTML = `
-
-      <div class="art">
-
-        <img
-          src="${escapeHTML(art)}"
-          alt="${escapeHTML(song.trackName)}"
-          loading="lazy"
-        >
-
-        ${
-          song.previewUrl
-          ?
-          `<button class="play"
-             data-preview="${escapeHTML(song.previewUrl)}"
-             data-art="${escapeHTML(art)}"
-             data-title="${escapeHTML(song.trackName)}"
-             data-artist="${escapeHTML(song.artistName)}">
-             ▶
-           </button>`
-          :
-          ""
-        }
-
-      </div>
-
-      <div class="info">
-
-        <div class="title">
-          ${escapeHTML(song.trackName)}
-        </div>
-
-        <div class="artist">
-          ${escapeHTML(song.artistName)}
-        </div>
-
-        <div class="album">
-          ${escapeHTML(song.collectionName || "Single")}
-        </div>
-
-      </div>
-    `;
-
-
-    grid.appendChild(card);
-
-  });
-
-
-  document.querySelectorAll(".play").forEach(button => {
-
-    button.addEventListener("click", () => {
-
-      playSong(
-        button.dataset.preview,
-        button.dataset.art,
-        button.dataset.title,
-        button.dataset.artist
-      );
-
-    });
-
-  });
-
-}
-
-
-async function searchMusic(term) {
-
-  term = term.trim();
-
-  if (!term) return;
-
-  showLoading();
-
-  try {
-
-    const response =
-      await fetch(API + encodeURIComponent(term));
-
-    if (!response.ok) {
-      throw new Error("API error");
-    }
-
-    const data =
+/* =====================================================
+   RENDER SONGS
+   =====================================================
