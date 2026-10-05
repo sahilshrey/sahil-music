@@ -1,55 +1,784 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Sahil Music</title>
+<meta name="theme-color" content="#08080d">
+<meta name="description" content="Sahil Music — Discover songs, artists and albums.">
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<title>Sahil Music</title>
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: #08080b;
-      color: white;
-      font-family: Arial, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    .box {
-      text-align: center;
-      padding: 40px;
-    }
+body {
+  background: #08080d;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
 
-    h1 {
-      font-size: 56px;
-      margin: 0;
-    }
+/* HEADER */
 
-    h1 span {
-      color: #a78bfa;
-    }
+header {
+  height: 72px;
+  padding: 0 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #202027;
+  background: rgba(8,8,13,.9);
+  backdrop-filter: blur(18px);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
 
-    p {
-      color: #999;
-      font-size: 18px;
-      margin-top: 15px;
-    }
-  </style>
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.logo-icon {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg,#8b5cf6,#ec4899);
+}
+
+.logo span {
+  color: #a78bfa;
+}
+
+.apple-link {
+  color: #ddd;
+  text-decoration: none;
+  border: 1px solid #30303a;
+  padding: 10px 15px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+/* HERO */
+
+.hero {
+  max-width: 1250px;
+  margin: auto;
+  padding: 80px 6% 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+}
+
+.hero-content {
+  flex: 1;
+}
+
+.eyebrow {
+  color: #a78bfa;
+  letter-spacing: 4px;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: clamp(48px,8vw,86px);
+  line-height: .95;
+  letter-spacing: -5px;
+}
+
+.gradient {
+  background: linear-gradient(90deg,#a78bfa,#ec4899);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  color: #92929d;
+  margin-top: 24px;
+  max-width: 550px;
+  line-height: 1.6;
+}
+
+/* SEARCH */
+
+.search {
+  margin-top: 30px;
+  height: 58px;
+  max-width: 650px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  background: #121218;
+  border: 1px solid #30303a;
+  border-radius: 16px;
+}
+
+.search-icon {
+  font-size: 20px;
+  margin-left: 15px;
+}
+
+#searchInput {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: white;
+  padding: 0 14px;
+  font-size: 15px;
+}
+
+#searchInput::placeholder {
+  color: #666672;
+}
+
+#searchButton {
+  height: 46px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 12px;
+  background: white;
+  color: #08080d;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* VINYL */
+
+.vinyl {
+  width: 270px;
+  height: 270px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background:
+    repeating-radial-gradient(
+      circle,
+      #08080b 0px,
+      #08080b 4px,
+      #1b1b20 5px,
+      #1b1b20 8px
+    );
+  border: 18px solid #15151b;
+  box-shadow:
+    0 0 80px rgba(139,92,246,.3),
+    0 25px 80px #000;
+  animation: spin 18s linear infinite;
+  position: relative;
+}
+
+.vinyl::after {
+  content: "";
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  border-radius: 50%;
+  background: linear-gradient(135deg,#a78bfa,#ec4899);
+  border: 9px solid #101015;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* CONTENT */
+
+.content {
+  max-width: 1250px;
+  margin: auto;
+  padding: 20px 6% 130px;
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.section-title h2 {
+  font-size: 28px;
+}
+
+#count {
+  color: #666672;
+  font-size: 13px;
+}
+
+/* CHIPS */
+
+.chips {
+  display: flex;
+  gap: 9px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 22px;
+}
+
+.chips::-webkit-scrollbar {
+  display: none;
+}
+
+.chip {
+  white-space: nowrap;
+  padding: 9px 15px;
+  border: 1px solid #2c2c34;
+  background: #111116;
+  color: #aaa;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.chip:hover {
+  border-color: #8b5cf6;
+  color: white;
+}
+
+/* GRID */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5,1fr);
+  gap: 18px;
+}
+
+.card {
+  background: #111116;
+  border: 1px solid #22222a;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: .25s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: #454050;
+}
+
+.art {
+  position: relative;
+  aspect-ratio: 1;
+  background: #191920;
+}
+
+.art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.play {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 50%;
+  background: white;
+  color: black;
+  font-size: 17px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px #000;
+}
+
+.info {
+  padding: 13px;
+}
+
+.title {
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.artist {
+  margin-top: 6px;
+  color: #9999a3;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.album {
+  margin-top: 7px;
+  color: #62626d;
+  font-size: 10px;
+}
+
+/* STATUS */
+
+.status {
+  text-align: center;
+  padding: 50px 20px;
+  color: #777;
+}
+
+.spinner {
+  width: 30px;
+  height: 30px;
+  margin: auto;
+  border: 3px solid #292930;
+  border-top-color: #a78bfa;
+  border-radius: 50%;
+  animation: spinLoader .8s linear infinite;
+}
+
+@keyframes spinLoader {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* PLAYER */
+
+.player {
+  position: fixed;
+  left: 18px;
+  right: 18px;
+  bottom: 18px;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 14px;
+  border: 1px solid #383342;
+  border-radius: 17px;
+  background: rgba(20,20,27,.95);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 70px #000;
+}
+
+.player.show {
+  display: flex;
+}
+
+.player img {
+  width: 50px;
+  height: 50px;
+  border-radius: 9px;
+  object-fit: cover;
+}
+
+.player-info {
+  min-width: 120px;
+  max-width: 250px;
+}
+
+.player-title {
+  font-size: 13px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.player-artist {
+  color: #888;
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+#audio {
+  flex: 1;
+  min-width: 150px;
+}
+
+.close {
+  background: none;
+  border: 0;
+  color: #aaa;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* FOOTER */
+
+footer {
+  border-top: 1px solid #202027;
+  max-width: 1250px;
+  margin: auto;
+  padding: 25px 6%;
+  color: #555;
+  font-size: 11px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* MOBILE */
+
+@media(max-width:900px) {
+
+  .hero {
+    padding-top: 55px;
+  }
+
+  .vinyl {
+    width: 210px;
+    height: 210px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(3,1fr);
+  }
+}
+
+@media(max-width:600px) {
+
+  header {
+    padding: 0 5%;
+  }
+
+  .apple-link {
+    display: none;
+  }
+
+  .hero {
+    padding: 50px 5% 35px;
+    display: block;
+  }
+
+  h1 {
+    font-size: 55px;
+  }
+
+  .vinyl {
+    display: none;
+  }
+
+  .search {
+    height: 55px;
+  }
+
+  #searchButton {
+    padding: 0 15px;
+  }
+
+  .content {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2,1fr);
+    gap: 12px;
+  }
+
+  .player {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+  }
+
+  .player-info {
+    max-width: 100px;
+  }
+
+  footer {
+    padding: 25px 5%;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="box">
-    <h1>Sahil <span>Music</span></h1>
-    <p>Music discovery starts here 🎵</p>
+<header>
+  <div class="logo">
+    <div class="logo-icon">♫</div>
+    Sahil<span>Music</span>
   </div>
 
-</body>
-</html>
+  <a
+    class="apple-link"
+    href="https://music.apple.com/"
+    target="_blank"
+    rel="noopener"
+  >
+    Open Apple Music ↗
+  </a>
+</header>
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="eyebrow">MUSIC DISCOVERY</div>
+
+    <h1>
+      Find something<br>
+      <span>you'll love.</span>
+    </h1>
+
+    <p class="subtitle">
+      Search millions of songs, discover new artists,
+      and listen to available previews.
+    </p>
+
+    <div class="search">
+      <div class="search-icon">⌕</div>
+
+      <input
+        id="searchInput"
+        type="text"
+        placeholder="Search songs, artists or albums..."
+        autocomplete="off"
+      >
+
+      <button id="searchButton">
+        Search
+      </button>
+    </div>
+
+  </div>
+
+  <div class="vinyl"></div>
+
+</section>
+
+<main class="content">
+
+  <div class="section-title">
+    <h2>Explore music</h2>
+    <span id="count"></span>
+  </div>
+
+  <div class="chips">
+    <button class="chip" data-search="Bollywood">Bollywood</button>
+    <button class="chip" data-search="Punjabi">Punjabi</button>
+    <button class="chip" data-search="Hindi">Hindi</button>
+    <button class="chip" data-search="English">English</button>
+    <button class="chip" data-search="Arijit Singh">Arijit Singh</button>
+    <button class="chip" data-search="AP Dhillon">AP Dhillon</button>
+    <button class="chip" data-search="The Weeknd">The Weeknd</button>
+  </div>
+
+  <div id="status" class="status">
+    <div class="spinner"></div>
+    <p style="margin-top:15px;">Finding music...</p>
+  </div>
+
+  <div id="grid" class="grid"></div>
+
+</main>
+
+<footer>
+  <span>© 2026 Sahil Music</span>
+  <span>Music discovery • Powered by Apple catalog</span>
+</footer>
+
+<div id="player" class="player">
+
+  <img id="playerArt" src="" alt="">
+
+  <div class="player-info">
+    <div id="playerTitle" class="player-title"></div>
+    <div id="playerArtist" class="player-artist"></div>
+  </div>
+
+  <audio id="audio" controls></audio>
+
+  <button id="closePlayer" class="close">×</button>
+
+</div>
+
+<script>
+
+const API =
+  "https://itunes.apple.com/search?media=music&entity=song&limit=30&country=IN&term=";
+
+const grid = document.getElementById("grid");
+const status = document.getElementById("status");
+const count = document.getElementById("count");
+
+const input = document.getElementById("searchInput");
+const searchButton = document.getElementById("searchButton");
+
+const player = document.getElementById("player");
+const playerArt = document.getElementById("playerArt");
+const playerTitle = document.getElementById("playerTitle");
+const playerArtist = document.getElementById("playerArtist");
+const audio = document.getElementById("audio");
+const closePlayer = document.getElementById("closePlayer");
+
+
+function escapeHTML(text) {
+
+  return String(text || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+function showLoading() {
+
+  status.style.display = "block";
+
+  status.innerHTML = `
+    <div class="spinner"></div>
+    <p style="margin-top:15px;">Finding music...</p>
+  `;
+
+  grid.innerHTML = "";
+
+}
+
+
+function showError() {
+
+  status.style.display = "block";
+
+  status.innerHTML = `
+    <p style="font-size:18px;">Something went wrong.</p>
+    <p style="margin-top:8px;color:#555;">
+      Please check your connection and try again.
+    </p>
+  `;
+
+}
+
+
+function renderSongs(songs) {
+
+  status.style.display = "none";
+
+  grid.innerHTML = "";
+
+  count.textContent = songs.length + " results";
+
+  if (!songs.length) {
+
+    status.style.display = "block";
+
+    status.innerHTML = `
+      <p>No music found.</p>
+    `;
+
+    return;
+  }
+
+
+  songs.forEach(song => {
+
+    const art =
+      (song.artworkUrl100 || "")
+      .replace("100x100", "600x600");
+
+
+    const card = document.createElement("div");
+
+    card.className = "card";
+
+
+    card.innerHTML = `
+
+      <div class="art">
+
+        <img
+          src="${escapeHTML(art)}"
+          alt="${escapeHTML(song.trackName)}"
+          loading="lazy"
+        >
+
+        ${
+          song.previewUrl
+          ?
+          `<button class="play"
+             data-preview="${escapeHTML(song.previewUrl)}"
+             data-art="${escapeHTML(art)}"
+             data-title="${escapeHTML(song.trackName)}"
+             data-artist="${escapeHTML(song.artistName)}">
+             ▶
+           </button>`
+          :
+          ""
+        }
+
+      </div>
+
+      <div class="info">
+
+        <div class="title">
+          ${escapeHTML(song.trackName)}
+        </div>
+
+        <div class="artist">
+          ${escapeHTML(song.artistName)}
+        </div>
+
+        <div class="album">
+          ${escapeHTML(song.collectionName || "Single")}
+        </div>
+
+      </div>
+    `;
+
+
+    grid.appendChild(card);
+
+  });
+
+
+  document.querySelectorAll(".play").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      playSong(
+        button.dataset.preview,
+        button.dataset.art,
+        button.dataset.title,
+        button.dataset.artist
+      );
+
+    });
+
+  });
+
+}
+
+
+async function searchMusic(term) {
+
+  term = term.trim();
+
+  if (!term) return;
+
+  showLoading();
+
+  try {
+
+    const response =
+      await fetch(API + encodeURIComponent(term));
+
+    if (!response.ok) {
+      throw new Error("API error");
+    }
+
+    const data =
