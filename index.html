@@ -340,6 +340,27 @@ h1 {
   transform: translateY(-1px);
 }
 
+.spotify-play {
+  margin: 0 13px 13px;
+  width: calc(100% - 26px);
+  padding: 9px 12px;
+  border: 1px solid #2c2c34;
+  border-radius: 10px;
+  background: #17171d;
+  color: #ddd;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.spotify-play:hover {
+  background: #211a2b;
+  border-color: #8b5cf6;
+  color: white;
+  transform: translateY(-1px);
+}
+  
 .info {
   padding: 13px;
 }
@@ -780,6 +801,20 @@ const audio =
 const closePlayer =
   document.getElementById("closePlayer");
 
+const spotifyMap = {
+  "blinding lights|the weeknd":
+    "https://open.spotify.com/track/0sf12qNH5qcw8qpgymFOqD"
+};
+
+function getSpotifyUrl(title, artist) {
+  const key =
+    title.trim().toLowerCase() +
+    "|" +
+    artist.trim().toLowerCase();
+
+  return spotifyMap[key] || null;
+}
+  
   let spotifyController = null;
 
 window.onSpotifyIframeApiReady = (IFrameAPI) => {
@@ -958,12 +993,6 @@ function renderSongs(songs) {
   ""
 }
 
-<button
-  class="spotify-search"
-  aria-label="Open in Spotify"
->
-  Spotify
-</button>
 
       </div>
 
@@ -980,6 +1009,13 @@ function renderSongs(songs) {
         <div class="album">
           ${escapeHTML(album)}
         </div>
+
+<button
+  class="spotify-play"
+  aria-label="Play on Spotify"
+>
+  🎵 Spotify
+</button>
 
       </div>
 
@@ -1009,29 +1045,45 @@ function renderSongs(songs) {
     }
     
 const spotifyButton =
-  card.querySelector(".spotify-search");
+  card.querySelector(".spotify-play");
 
 if (spotifyButton) {
 
-  spotifyButton.addEventListener(
-    "click",
-    () => {
+  const spotifyUrl =
+    getSpotifyUrl(title, artist);
 
-      const query =
-        encodeURIComponent(
-          title + " " + artist
+  if (!spotifyUrl) {
+
+    spotifyButton.style.display =
+      "none";
+
+  } else {
+
+    spotifyButton.addEventListener(
+      "click",
+      () => {
+
+        if (!spotifyController) {
+          return;
+        }
+
+        spotifyController.loadEntity(
+          spotifyUrl
         );
 
-      window.open(
-        "https://open.spotify.com/search/" +
-        query,
-        "_blank"
-      );
+        document
+          .getElementById("spotifyTest")
+          .scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          });
 
-    }
-  );
+      }
+    );
 
-}
+  }
+
+                }
 
     grid.appendChild(card);
 
