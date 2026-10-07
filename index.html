@@ -319,6 +319,27 @@ h1 {
   box-shadow: 0 8px 25px #000;
 }
 
+  .spotify-search {
+  margin: 0 13px 13px;
+  width: calc(100% - 26px);
+  padding: 9px 12px;
+  border: 1px solid #2c2c34;
+  border-radius: 10px;
+  background: #17171d;
+  color: #ddd;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.spotify-search:hover {
+  background: #211a2b;
+  border-color: #8b5cf6;
+  color: white;
+  transform: translateY(-1px);
+}
+
 .info {
   padding: 13px;
 }
@@ -763,13 +784,8 @@ const closePlayer =
 
 window.onSpotifyIframeApiReady = (IFrameAPI) => {
 
-  const spotifyTest =
-    document.getElementById("spotifyTest");
-
   const spotifyEmbed =
     document.getElementById("spotifyEmbed");
-
-  spotifyTest.style.display = "block";
 
   const options = {
     width: "100%",
@@ -928,19 +944,26 @@ function renderSongs(songs) {
         >
 
         ${
-          preview
-          ?
-          `
-          <button
-            class="play"
-            aria-label="Play preview"
-          >
-            ▶
-          </button>
-          `
-          :
-          ""
-        }
+  preview
+  ?
+  `
+  <button
+    class="play"
+    aria-label="Play preview"
+  >
+    ▶
+  </button>
+  `
+  :
+  ""
+}
+
+<button
+  class="spotify-search"
+  aria-label="Open in Spotify"
+>
+  Spotify
+</button>
 
       </div>
 
@@ -984,7 +1007,31 @@ function renderSongs(songs) {
       );
 
     }
+    
+const spotifyButton =
+  card.querySelector(".spotify-search");
 
+if (spotifyButton) {
+
+  spotifyButton.addEventListener(
+    "click",
+    () => {
+
+      const query =
+        encodeURIComponent(
+          title + " " + artist
+        );
+
+      window.open(
+        "https://open.spotify.com/search/" +
+        query,
+        "_blank"
+      );
+
+    }
+  );
+
+}
 
     grid.appendChild(card);
 
